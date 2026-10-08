@@ -24,10 +24,10 @@ A business systems analyst case study. TelcoX, a fictional telecom company, want
 
 ## Start here
 
-- **Full report (PDF):** [reports/TelcoX_case_study.pdf](reports/TelcoX_case_study.pdf), about 57 pages covering every deliverable.
-- **Executive summary (7 slides):**  A local copy is in `presentation/telcox_executive_summary.html`.
-- **Segment dashboard:**  A local copy is in `dashboard/telcox_segment_dashboard.html`.
-- **Analysis code:** [notebooks/segmentation_analysis.ipynb](notebooks/segmentation_analysis.ipynb), with a detailed explanation before every step.
+- **Full report (PDF):** [reports/TelcoX_case_study.pdf](reports/TelcoX_case_study.pdf), about 56 pages covering every deliverable.
+- **Executive summary (7 slides):** [hosted deck](https://claude.ai/artifact/XnDcURtWjSR2HB4D9DR2Dj). A local copy is in `presentation/telcox_executive_summary.html`.
+- **Segment dashboard:** a Next.js app in [dashboard/](dashboard/), built as a static site (see "Run the dashboard" below). The first version is also available as a [hosted page](https://claude.ai/artifact/DvB1ri26T4NPXG9Pvk9Y8Z).
+- **Analysis code:** [notebooks/segmentation_analysis.ipynb](notebooks/segmentation_analysis.ipynb), with a plain-language explanation before every step.
 
 ## Documents
 
@@ -59,7 +59,7 @@ telcox-customer-segmentation/
 ├── src/             generate_telcox_data.py
 ├── reports/         TelcoX_case_study.pdf and figures/
 ├── presentation/    executive summary deck (HTML)
-└── dashboard/       segment dashboard (HTML)
+└── dashboard/       segment dashboard (Next.js app)
 ```
 
 ## How to run it
@@ -82,6 +82,19 @@ jupyter lab
 ```
 
 The notebook reads `../data/telcox_customers.csv`, so it must stay in the `notebooks` folder. A fixed random seed (42) means the results are the same every time. The names and numbers in the documents belong to this seed.
+
+## Run the dashboard
+
+The dashboard needs Node.js (a current LTS version). It is separate from the Python analysis.
+
+```bash
+cd dashboard
+npm install
+npm run dev          # opens at http://localhost:3000
+npm run build        # writes a static site to dashboard/out
+```
+
+It reads `dashboard/src/data/segments.json`, which holds segment-level totals only and no customer rows.
 
 ## Method in brief
 
